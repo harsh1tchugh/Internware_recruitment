@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background: url("file:///E:/internware/reference.jpeg") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  color: white;
+  width: 300px;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  margin: 0 5px 0 0;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  min-height: 20px;
+}
+
+#dashboard {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="loginBox">
+  <h2>Login</h2>
+  <form id="loginForm">
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+
+    <label>
+      <input type="checkbox"> Remember me
+    </label>
+    <br>
+    <a href="#" onclick="return false;">Forgot Password?</a>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <p class="error" id="error"></p>
+
+  <p>Don't have an account? <a href="#" onclick="return false;">Register</a></p>
+</div>
+
+<div class="box" id="dashboard">
+  <h2>Dashboard</h2>
+  <p id="welcome"></p>
+  <button id="logout">Log out</button>
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  var user = document.getElementById("username").value;
+  var pass = document.getElementById("password").value;
+
+  if (user === "admin" && pass === "internware") {
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+    document.getElementById("welcome").textContent = "Welcome, " + user + "!";
+    document.getElementById("error").textContent = "";
+  } else {
+    document.getElementById("error").textContent = "Invalid username or password.";
+  }
+});
+
+document.getElementById("logout").addEventListener("click", function () {
+  document.getElementById("dashboard").style.display = "none";
+  document.getElementById("loginBox").style.display = "block";
+  document.getElementById("password").value = "";
+});
+</script>
+
+</body>
+
+
+</html>
